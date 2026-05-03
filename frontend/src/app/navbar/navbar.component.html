@@ -1,0 +1,35 @@
+<nav class="navbar">
+
+  <div class="navbar-brand" routerLink="/shop">
+    <div class="brand-icon">S</div>
+    <span class="brand-name">ShopFlow</span>
+  </div>
+
+  <div class="navbar-links">
+    <a routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <mat-icon>store</mat-icon> Boutique
+    </a>
+
+    <ng-container *ngIf="isLoggedIn() && isCustomer()">
+      <a routerLink="/cart" routerLinkActive="active">
+        <mat-icon>shopping_cart</mat-icon> Panier
+      </a>
+      <a routerLink="/orders" routerLinkActive="active">
+        <mat-icon>receipt_long</mat-icon> Mes commandes
+      </a>
+    </ng-container>
+  </div>
+
+  <div class="navbar-actions">
+    <button *ngIf="!isLoggedIn()" class="btn-login" (click)="goLogin()">
+      <mat-icon>login</mat-icon>
+      Se connecter
+    </button>
+
+    <button *ngIf="isLoggedIn()" class="btn-logout" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Déconnexion
+    </button>
+  </div>
+
+</nav>

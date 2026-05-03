@@ -1,0 +1,55 @@
+<div class="orders-page">
+
+  <h1>Mes commandes</h1>
+
+  <div *ngIf="orders.length === 0" class="empty">
+    <mat-icon>receipt_long</mat-icon>
+    <p>Aucune commande trouvée</p>
+    <button mat-raised-button routerLink="/shop" class="btn-shop">Commencer mes achats</button>
+  </div>
+
+  <div class="order-card" *ngFor="let o of orders">
+
+    <div class="card-header">
+      <div class="card-header-left">
+        <mat-icon class="order-icon">receipt_long</mat-icon>
+        <div>
+          <span class="order-num">{{ o.numeroCommande }}</span>
+          <span class="order-date">{{ o.dateCommande | date:'dd/MM/yyyy à HH:mm' }}</span>
+        </div>
+      </div>
+      <span class="badge" [ngClass]="o.statut.toLowerCase()">{{ o.statut }}</span>
+    </div>
+
+    <div class="card-body">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Adresse</span>
+          <span class="info-value">{{ o.adresseLivraison }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Sous-total</span>
+          <span class="info-value">{{ o.sousTotal }} DT</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Livraison</span>
+          <span class="info-value free" *ngIf="o.fraisLivraison === 0">Gratuite</span>
+          <span class="info-value" *ngIf="o.fraisLivraison > 0">{{ o.fraisLivraison }} DT</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Total TTC</span>
+          <span class="info-value total">{{ o.totalTTC }} DT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer" *ngIf="o.statut === 'PENDING'">
+      <button mat-stroked-button class="btn-cancel" (click)="cancelOrder(o.id)">
+        <mat-icon>cancel</mat-icon>
+        Annuler la commande
+      </button>
+    </div>
+
+  </div>
+
+</div>

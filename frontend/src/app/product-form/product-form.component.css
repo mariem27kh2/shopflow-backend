@@ -1,0 +1,173 @@
+.form-container {
+  background: #ffffff;
+  width: 520px;
+  max-width: 100%;
+}
+
+/* ── Header ── */
+.form-header {
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid #f3f0ff;
+}
+
+.form-header h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #5b21b6;
+}
+
+.form-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* ── Corps ── */
+.form-body {
+  padding: 20px 28px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.full-width { width: 100%; }
+
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+mat-form-field { width: 100%; }
+
+/* ── Zone upload ── */
+.upload-section { margin-top: 4px; }
+
+.upload-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 8px;
+}
+
+.upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 110px;
+  border: 2px dashed #c4b5fd;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #faf8ff;
+  transition: all 0.2s;
+}
+
+.upload-zone:hover {
+  border-color: #7c3aed;
+  background: #f3f0ff;
+}
+
+.upload-zone mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: #7c3aed;
+}
+
+.upload-zone span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #5b21b6;
+}
+
+.upload-zone small {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.image-preview {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #ede9fe;
+  height: 140px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  padding: 0;
+}
+
+.remove-btn mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.change-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7c3aed;
+  cursor: pointer;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: #f3f0ff;
+}
+
+.change-btn mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Footer ── */
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 28px 24px;
+  border-top: 1px solid #f3f0ff;
+  background: #ffffff;
+}
+
+.cancel-btn {
+  color: #6b7280 !important;
+  font-weight: 600;
+  border-radius: 8px !important;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  font-weight: 700;
+  padding: 0 28px !important;
+  height: 40px;
+}

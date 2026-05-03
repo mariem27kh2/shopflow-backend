@@ -1,0 +1,84 @@
+.prompt-container {
+  background: white;
+  padding: 32px 28px;
+  text-align: center;
+  width: 360px;
+}
+
+.prompt-icon {
+  width: 64px;
+  height: 64px;
+  background: #ede9fe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.prompt-icon mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: #7c3aed;
+}
+
+h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #111827;
+}
+
+p {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.prompt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.btn-login {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 700;
+  height: 44px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.btn-register {
+  background: #f3f0ff !important;
+  color: #7c3aed !important;
+  border-radius: 10px !important;
+  font-weight: 700;
+  height: 44px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  box-shadow: none !important;
+}
+
+.btn-register:hover {
+  background: #ede9fe !important;
+}
+
+.btn-cancel {
+  color: #9ca3af !important;
+  font-size: 13px;
+  width: 100%;
+}

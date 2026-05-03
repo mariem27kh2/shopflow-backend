@@ -17,7 +17,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "seller_id", nullable = false)
     private User seller;
 
@@ -40,7 +40,7 @@ public class Product {
     private LocalDateTime dateCreation;
 
     // Un produit appartient à plusieurs catégories
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "product_categories",
         joinColumns = @JoinColumn(name = "product_id"),
@@ -49,10 +49,10 @@ public class Product {
     private List<Category> categories;
 
     // Images du produit
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "product_images",
         joinColumns = @JoinColumn(name = "product_id"))
-    @Column(name = "image_url")
+    @Column(name = "image_url", columnDefinition = "TEXT")
     private List<String> images;
 
     // Variantes (tailles, couleurs...)

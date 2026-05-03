@@ -1,0 +1,84 @@
+<div class="seller-orders-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Mes commandes clients</h1>
+      <p class="subtitle">Commandes contenant vos produits — Dernière mise à jour : {{ lastRefresh | date:'HH:mm:ss' }}</p>
+    </div>
+    <button mat-raised-button class="refresh-btn" (click)="loadOrders()">
+      <mat-icon>refresh</mat-icon>
+      Actualiser
+    </button>
+  </div>
+
+  <div class="toolbar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Rechercher</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="N° commande, adresse..." #input>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="table-card">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="numeroCommande">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>N° Commande</th>
+        <td mat-cell *matCellDef="let row">
+          <strong>{{ row.numeroCommande }}</strong>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateCommande">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.dateCommande | date:'dd/MM/yyyy HH:mm' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="adresse">
+        <th mat-header-cell *matHeaderCellDef>Adresse livraison</th>
+        <td mat-cell *matCellDef="let row">{{ row.adresseLivraison }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="produits">
+        <th mat-header-cell *matHeaderCellDef>Mes produits commandés</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="produit-chip" *ngFor="let l of row.lignes">
+            {{ l.productNom }} <span class="qty">x{{ l.quantite }}</span>
+            <span class="prix">{{ l.sousTotal }} DT</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total mes produits</th>
+        <td mat-cell *matCellDef="let row">
+          <strong class="total">{{ row.sousTotal }} DT</strong>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
+        <td mat-cell *matCellDef="let row">
+          <span class="badge" [ngClass]="row.statut?.toLowerCase()">
+            {{ row.statut }}
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell no-data" colspan="6">
+          Aucune commande trouvée
+        </td>
+      </tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+  </div>
+
+</div>

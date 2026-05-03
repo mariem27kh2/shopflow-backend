@@ -66,6 +66,7 @@ public class ProductService {
     }
 
     // Liste paginée des produits
+    @Transactional(readOnly = true)
     public Page<ProductResponse> getAllProducts(int page, int size) {
         Pageable pageable = PageRequest.of(page, size,
                 Sort.by("dateCreation").descending());
@@ -74,6 +75,7 @@ public class ProductService {
     }
 
     // Détail d'un produit
+    @Transactional(readOnly = true)
     public ProductResponse getProductById(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -82,6 +84,7 @@ public class ProductService {
     }
 
     // Recherche
+    @Transactional(readOnly = true)
     public Page<ProductResponse> searchProducts(String q, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return productRepository
@@ -166,6 +169,7 @@ public class ProductService {
     }
 
     // Top produits
+    @Transactional(readOnly = true)
     public List<ProductResponse> getTopSellingProducts() {
         Pageable pageable = PageRequest.of(0, 10);
         return productRepository.findTopSellingProducts(pageable)
@@ -174,6 +178,7 @@ public class ProductService {
     }
 
     // Produits en promo
+    @Transactional(readOnly = true)
     public Page<ProductResponse> getPromoProducts(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return productRepository.findByPrixPromoIsNotNullAndActifTrue(pageable)

@@ -175,6 +175,50 @@ public class OrderService {
         return orderRepository.findAll(pageable).map(this::toResponse);
     }
 
+    // Commandes contenant les produits du seller
+    public Page<OrderResponse> getSellerOrders(int page, int size) {
+        User seller = getCurrentUser();
+        Pageable pageable = PageRequest.of(page, size,
+                Sort.by("dateCommande").descending());
+        return orderRepository.findBySellerIdInItems(seller.getId(), pageable)
+                .map(order -> toSellerResponse(order, seller.getId()));
+    }
+
+    // DTO filtré pour le seller — seulement ses lignes
+    private OrderResponse toSellerResponse(Order order, Long sellerId) {
+        OrderResponse response = new OrderResponse();
+        response.setId(order.getId());
+        response.setNumeroCommande(order.getNumeroCommande());
+        response.setStatut(order.getStatut().name());
+        response.setAdresseLivraison(order.getAdresseLivraison());
+        response.setDateCommande(order.getDateCommande());
+
+        // Filtrer seulement les lignes du seller
+        List<OrderResponse.OrderItemResponse> lignes = order.getLignes()
+                .stream()
+                .filter(item -> item.getProduct().getSeller().getId().equals(sellerId))
+                .map(item -> {
+                    OrderResponse.OrderItemResponse r = new OrderResponse.OrderItemResponse();
+                    r.setId(item.getId());
+                    r.setProductNom(item.getProduct().getNom());
+                    r.setQuantite(item.getQuantite());
+                    r.setPrixUnitaire(item.getPrixUnitaire());
+                    r.setSousTotal(item.getPrixUnitaire() * item.getQuantite());
+                    return r;
+                }).collect(Collectors.toList());
+
+        response.setLignes(lignes);
+
+        // Recalculer le total pour les lignes du seller uniquement
+        double sousTotal = lignes.stream()
+                .mapToDouble(OrderResponse.OrderItemResponse::getSousTotal).sum();
+        response.setSousTotal(sousTotal);
+        response.setFraisLivraison(0.0);
+        response.setTotalTTC(sousTotal);
+
+        return response;
+    }
+
     // Mettre à jour le statut
     @Transactional
     public OrderResponse updateStatus(Long id, String statut) {

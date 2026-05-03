@@ -1,0 +1,99 @@
+<div class="form-container">
+
+  <div class="form-header">
+    <h2>{{ isEdit ? 'Modifier le produit' : 'Ajouter un produit' }}</h2>
+    <p>{{ isEdit ? 'Modifiez les informations' : 'Remplissez les informations du produit' }}</p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="form-body">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom du produit</mat-label>
+        <input matInput formControlName="nom" placeholder="Ex: iPhone 15 Pro">
+        <mat-error *ngIf="form.get('nom')?.invalid">Nom obligatoire</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="2"
+          placeholder="Décrivez le produit..."></textarea>
+      </mat-form-field>
+
+      <div class="two-cols">
+        <mat-form-field appearance="outline">
+          <mat-label>Prix (DT)</mat-label>
+          <input matInput type="number" formControlName="prix">
+          <mat-error *ngIf="form.get('prix')?.invalid">Obligatoire</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prix Promo (DT)</mat-label>
+          <input matInput type="number" formControlName="prixPromo">
+        </mat-form-field>
+      </div>
+
+      <div class="two-cols">
+        <mat-form-field appearance="outline">
+          <mat-label>Stock</mat-label>
+          <input matInput type="number" formControlName="stock">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Catégories</mat-label>
+          <mat-select formControlName="categorieIds" multiple>
+            <mat-option *ngFor="let c of categories" [value]="c.id">
+              {{ c.nom }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Zone upload photo -->
+      <div class="upload-section">
+        <p class="upload-label">Photo du produit</p>
+
+        <!-- Preview si image choisie -->
+        <div class="image-preview" *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="Aperçu">
+          <button type="button" class="remove-btn" (click)="removeImage()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <!-- Zone de drop / bouton si pas d'image -->
+        <label class="upload-zone" *ngIf="!imagePreview" for="fileInput">
+          <mat-icon>add_photo_alternate</mat-icon>
+          <span>Cliquez pour importer une photo</span>
+          <small>JPG, PNG, WEBP — depuis votre PC</small>
+        </label>
+
+        <!-- Input file caché -->
+        <input
+          id="fileInput"
+          type="file"
+          accept="image/*"
+          style="display:none"
+          (change)="onFileSelected($event)">
+
+        <!-- Bouton changer si image déjà choisie -->
+        <label *ngIf="imagePreview" for="fileInput" class="change-btn">
+          <mat-icon>edit</mat-icon>
+          Changer la photo
+        </label>
+      </div>
+
+    </div>
+
+    <div class="form-footer">
+      <button mat-button type="button" class="cancel-btn" (click)="close()">
+        Annuler
+      </button>
+      <button mat-raised-button type="submit" class="save-btn">
+        {{ isEdit ? 'Enregistrer' : 'Ajouter' }}
+      </button>
+    </div>
+
+  </form>
+
+</div>

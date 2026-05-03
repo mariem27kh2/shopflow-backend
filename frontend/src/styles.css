@@ -1,0 +1,142 @@
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f6f4ff;
+  color: #111827;
+}
+
+/* ── Forcer mat-card blanc partout ── */
+.mat-mdc-card {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+.mdc-card {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* ── mat-select / dropdown blanc ── */
+.mat-mdc-select-value,
+.mat-mdc-select-arrow,
+.mat-mdc-option {
+  color: #111827 !important;
+}
+
+.mat-mdc-select-panel {
+  background: #ffffff !important;
+}
+
+.mat-mdc-option:hover {
+  background: #f3f0ff !important;
+}
+
+/* ── mat-form-field texte visible ── */
+.mat-mdc-form-field input,
+.mat-mdc-form-field textarea {
+  color: #111827 !important;
+}
+
+.mat-mdc-floating-label {
+  color: #6b7280 !important;
+}
+
+/* Bordures outline visibles globalement */
+.mdc-notched-outline__leading,
+.mdc-notched-outline__notch,
+.mdc-notched-outline__trailing {
+  border-color: #d1c4e9 !important;
+}
+
+.mat-mdc-form-field:hover .mdc-notched-outline__leading,
+.mat-mdc-form-field:hover .mdc-notched-outline__notch,
+.mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: #7c3aed !important;
+}
+
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #7c3aed !important;
+  border-width: 2px !important;
+}
+
+/* ── mat-table blanc ── */
+.mat-mdc-table {
+  background: #ffffff !important;
+}
+
+.mat-mdc-header-cell {
+  background: #f3f0ff !important;
+  color: #5b21b6 !important;
+}
+
+.mat-mdc-cell {
+  color: #111827 !important;
+  background: #ffffff !important;
+}
+
+/* ── mat-paginator blanc ── */
+.mat-mdc-paginator {
+  background: #ffffff !important;
+  color: #111827 !important;
+}
+
+.mat-mdc-paginator-range-label,
+.mat-mdc-paginator-page-size-label {
+  color: #111827 !important;
+}
+
+/* ── mat-dialog blanc ── */
+.mat-mdc-dialog-container {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border-radius: 20px !important;
+  padding: 0 !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+/* Options du select dans dialog */
+.mat-mdc-option {
+  color: #111827 !important;
+  background: #ffffff !important;
+}
+
+.mat-mdc-option:hover,
+.mat-mdc-option.mdc-list-item--selected {
+  background: #f3f0ff !important;
+  color: #7c3aed !important;
+}
+
+/* ── Custom dialog sans padding ── */
+.custom-dialog .mat-mdc-dialog-container,
+.custom-dialog .mdc-dialog__surface {
+  padding: 0 !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+.mat-mdc-snack-bar-container {
+  background: #1e1b4b !important;
+  color: white !important;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 3px;
+}

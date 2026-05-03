@@ -1,0 +1,164 @@
+.orders-page {
+  padding: 28px 40px;
+  background: #f6f4ff;
+  min-height: calc(100vh - 68px);
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 20px;
+}
+
+/* ── Vide ── */
+.empty {
+  text-align: center;
+  padding: 48px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #ede9fe;
+  color: #6b7280;
+}
+.empty mat-icon {
+  font-size: 48px; width: 48px; height: 48px;
+  color: #c4b5fd; display: block; margin: 0 auto 10px;
+}
+.btn-shop {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: white !important; border-radius: 8px !important;
+  font-weight: 700; margin-top: 12px;
+}
+
+/* ── Carte ── */
+.order-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #ede9fe;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.06);
+  overflow: hidden;
+}
+
+/* Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #faf8ff;
+  border-bottom: 1px solid #f3f0ff;
+}
+
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.order-icon {
+  color: #7c3aed;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+.order-num {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.order-date {
+  display: block;
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+/* Badge statut */
+.badge {
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge.pending    { background: #fef3c7; color: #d97706; }
+.badge.paid       { background: #d1fae5; color: #059669; }
+.badge.processing { background: #dbeafe; color: #2563eb; }
+.badge.shipped    { background: #ede9fe; color: #7c3aed; }
+.badge.delivered  { background: #dcfce7; color: #16a34a; }
+.badge.cancelled  { background: #fee2e2; color: #dc2626; }
+
+/* Body */
+.card-body {
+  padding: 16px 20px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.info-label {
+  font-size: 11px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.info-value.free  { color: #22c55e; }
+.info-value.total { color: #7c3aed; font-size: 16px; font-weight: 800; }
+
+/* Footer */
+.card-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #f3f0ff;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-cancel {
+  background: #fee2e2 !important;
+  border: none !important;
+  color: #dc2626 !important;
+  border-radius: 6px !important;
+  font-weight: 600;
+  font-size: 11px !important;
+  height: 26px !important;
+  min-height: 26px !important;
+  line-height: 26px !important;
+  padding: 0 10px !important;
+  min-width: unset !important;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.btn-cancel mat-icon {
+  font-size: 13px !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+.btn-cancel:hover { background: #fecaca !important; }
+
+@media (max-width: 768px) {
+  .orders-page { padding: 20px 16px; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
+}

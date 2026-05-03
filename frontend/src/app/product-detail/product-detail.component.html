@@ -1,0 +1,61 @@
+<div class="detail-page" *ngIf="product">
+
+  <button mat-button color="primary" (click)="retour()">
+    ← Retour à la boutique
+  </button>
+
+  <div class="detail-card">
+
+    <div class="image-box">
+      <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0]">
+      <div *ngIf="!product.images || product.images.length === 0" class="no-image">
+        <mat-icon>image</mat-icon>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h1>{{ product.nom }}</h1>
+
+      <p class="categories">
+        {{ product.categories.join(', ') }}
+      </p>
+
+      <p class="description">
+        {{ product.description }}
+      </p>
+
+      <div class="price-box">
+        <span class="promo" *ngIf="product.prixPromo">
+          {{ product.prixPromo }} DT
+        </span>
+
+        <span [class.old-price]="product.prixPromo">
+          {{ product.prix }} DT
+        </span>
+      </div>
+
+      <p class="stock" [class.out]="product.stock === 0">
+        Stock disponible : {{ product.stock }}
+      </p>
+
+      <p class="seller">
+        Vendeur : {{ product.sellerNom }}
+      </p>
+
+      <p class="rating">
+        Note : {{ product.noteMoyenne || 0 }} / 5 —
+        Avis : {{ product.nombreAvis || 0 }}
+      </p>
+
+      <button mat-raised-button (click)="ajouterPanier()"
+        *ngIf="peutAjouterPanier()"
+        [disabled]="product.stock === 0"
+        [class.added]="added">
+        <mat-icon>{{ added ? 'check' : 'add_shopping_cart' }}</mat-icon>
+        {{ added ? 'Ajouté au panier !' : (AS.isLoggedIn() ? 'Ajouter au panier' : 'Se connecter pour commander') }}
+      </button>
+    </div>
+
+  </div>
+
+</div>

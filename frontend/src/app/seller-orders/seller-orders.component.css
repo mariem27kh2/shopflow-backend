@@ -1,0 +1,115 @@
+.seller-orders-page {
+  padding: 28px 32px;
+  background: #f6f4ff;
+  min-height: 100vh;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.toolbar {
+  margin-bottom: 20px;
+}
+
+.search-field {
+  width: 380px;
+}
+
+.table-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.08);
+  border: 1px solid #ede9fe;
+}
+
+table { width: 100%; }
+
+th {
+  background: #f3f0ff !important;
+  color: #5b21b6 !important;
+  font-weight: 800 !important;
+}
+
+td { color: #111827 !important; }
+
+tr.mat-mdc-row:hover td { background: #faf8ff !important; }
+
+.produit-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #374151;
+  padding: 2px 0;
+}
+
+.qty {
+  background: #ede9fe;
+  color: #7c3aed;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.prix {
+  color: #7c3aed;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.total {
+  color: #7c3aed;
+  font-size: 15px;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge.pending    { background: #fef3c7; color: #d97706; }
+.badge.paid       { background: #d1fae5; color: #059669; }
+.badge.processing { background: #dbeafe; color: #2563eb; }
+.badge.shipped    { background: #ede9fe; color: #7c3aed; }
+.badge.delivered  { background: #dcfce7; color: #16a34a; }
+.badge.cancelled  { background: #fee2e2; color: #dc2626; }
+
+.refresh-btn {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 700;
+}
+
+.no-data {
+  text-align: center;
+  padding: 32px;
+  color: #9ca3af !important;
+}
+
+::ng-deep .mat-mdc-paginator {
+  background: white !important;
+  border-top: 1px solid #ede9fe;
+}

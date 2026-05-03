@@ -1,0 +1,47 @@
+<div class="orders-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Toutes les commandes</h1>
+      <p class="subtitle">Mis à jour : {{ lastRefresh | date:'HH:mm:ss' }}</p>
+    </div>
+    <button mat-raised-button class="refresh-btn" (click)="loadOrders()">
+      <mat-icon>refresh</mat-icon> Actualiser
+    </button>
+  </div>
+
+  <div *ngIf="orders.length === 0" class="empty">
+    Aucune commande trouvée.
+  </div>
+
+  <mat-card class="order-card" *ngFor="let o of orders">
+
+    <div class="header">
+      <div>
+        <h2>Commande {{ o.numeroCommande }}</h2>
+        <p>{{ o.dateCommande | date:'dd/MM/yyyy HH:mm' }}</p>
+      </div>
+
+      <span class="status">{{ o.statut }}</span>
+    </div>
+
+    <div class="content">
+      <p><strong>Client :</strong> {{ o.customerNom || '-' }}</p>
+      <p><strong>Adresse :</strong> {{ o.adresseLivraison }}</p>
+      <p><strong>Sous-total :</strong> {{ o.sousTotal }} DT</p>
+      <p><strong>Livraison :</strong> {{ o.fraisLivraison }} DT</p>
+      <p class="total"><strong>Total :</strong> {{ o.totalTTC }} DT</p>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Changer statut</mat-label>
+      <mat-select [value]="o.statut" (selectionChange)="changeStatus(o.id, $event.value)">
+        <mat-option *ngFor="let s of statuts" [value]="s">
+          {{ s }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-card>
+
+</div>

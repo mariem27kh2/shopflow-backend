@@ -1,12 +1,15 @@
 package com.shopflow.shopflow.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "categories")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -21,13 +24,13 @@ public class Category {
 
     private String description;
 
-    // Sous-catégories : une catégorie peut avoir une catégorie parente
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
+    @JsonIgnore
     private Category parent;
 
-    // Les sous-catégories de cette catégorie
-    @OneToMany(mappedBy = "parent")
-    @ToString.Exclude
-    private List<Category> sousCategories;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @Builder.Default
+    private List<Category> sousCategories = new ArrayList<>();
 }

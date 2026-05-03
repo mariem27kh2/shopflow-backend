@@ -1,0 +1,122 @@
+<div class="categories-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Gestion des catégories</h1>
+      <p class="subtitle">Espace administrateur</p>
+    </div>
+
+    <button mat-raised-button class="add-btn" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+      Ajouter une catégorie
+    </button>
+  </div>
+
+  <div class="popup-overlay" *ngIf="showForm">
+    <mat-card class="form-card">
+
+      <h2>{{ editMode ? 'Modifier catégorie' : 'Ajouter catégorie' }}</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput [(ngModel)]="nom">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type de catégorie</mat-label>
+        <mat-select [(ngModel)]="parentId">
+          <mat-option [value]="null">Catégorie principale</mat-option>
+
+          <mat-option
+            *ngFor="let c of categories"
+            [value]="c.id"
+            [disabled]="c.parentId != null">
+            {{ c.nom }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-raised-button class="save-btn" (click)="saveCategory()">
+          {{ editMode ? 'Modifier' : 'Ajouter' }}
+        </button>
+
+        <button mat-button class="cancel-btn" (click)="closeForm()">
+          Annuler
+        </button>
+      </div>
+
+    </mat-card>
+  </div>
+
+  <div class="table-card">
+
+    <div class="table-header">
+      <div>Nom</div>
+      <div>Description</div>
+      <div>Type</div>
+      <div>Actions</div>
+    </div>
+
+    <ng-container *ngFor="let c of categories">
+
+      <ng-container *ngIf="c.parentId == null">
+
+        <div class="table-row">
+          <div class="name-cell">
+            <span class="dot purple"></span>
+            <strong>{{ c.nom }}</strong>
+          </div>
+
+          <div class="desc">{{ c.description }}</div>
+
+          <div>
+            <span class="badge main">Principale</span>
+          </div>
+
+          <div class="actions">
+            <button mat-icon-button (click)="openDialog(c)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button (click)="deleteCategory(c.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div *ngFor="let child of getChildren(c.id)" class="table-row child-row">
+          <div class="name-cell child-name">
+            <span class="dot pink"></span>
+            <strong>↳ {{ child.nom }}</strong>
+          </div>
+
+          <div class="desc">{{ child.description }}</div>
+
+          <div>
+            <span class="badge child">Sous-catégorie</span>
+          </div>
+
+          <div class="actions">
+            <button mat-icon-button (click)="openDialog(child)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button (click)="deleteCategory(child.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+      </ng-container>
+
+    </ng-container>
+
+  </div>
+
+</div>

@@ -29,16 +29,20 @@ public class AuthService {
 
     @Transactional
     public AuthResponse register(RegisterRequest request) {
-        // Vérifier si l'email existe déjà
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new BusinessException("Email déjà utilisé !");
         }
 
-        // Déterminer le rôle
-        Role role = "SELLER".equalsIgnoreCase(request.getRole())
-                ? Role.SELLER : Role.CUSTOMER;
+        // ✅ ADMIN, SELLER, CUSTOMER tous acceptés
+        Role role;
+        if ("ADMIN".equalsIgnoreCase(request.getRole())) {
+            role = Role.ADMIN;
+        } else if ("SELLER".equalsIgnoreCase(request.getRole())) {
+            role = Role.SELLER;
+        } else {
+            role = Role.CUSTOMER;
+        }
 
-        // Créer l'utilisateur
         User user = User.builder()
                 .email(request.getEmail())
                 .motDePasse(passwordEncoder.encode(request.getMotDePasse()))
@@ -50,7 +54,6 @@ public class AuthService {
 
         userRepository.save(user);
 
-        // Si vendeur, créer le profil boutique
         if (role == Role.SELLER) {
             SellerProfile profile = SellerProfile.builder()
                     .user(user)
@@ -62,7 +65,6 @@ public class AuthService {
             sellerProfileRepository.save(profile);
         }
 
-        // Générer les tokens
         String accessToken = jwtService.generateToken(user.getEmail());
         String refreshToken = jwtService.generateRefreshToken(user.getEmail());
 
@@ -77,7 +79,6 @@ public class AuthService {
     }
 
     public AuthResponse login(LoginRequest request) {
-        // Spring Security vérifie email + mot de passe
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(), request.getMotDePasse()));

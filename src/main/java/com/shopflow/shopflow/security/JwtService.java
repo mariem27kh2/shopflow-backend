@@ -55,15 +55,16 @@ public class JwtService {
     }
 
     // Vérifier si le token est valide
-    public boolean isTokenValid(String token) {
-        try {
-            Jwts.parser()
-                .verifyWith(getSigningKey())
-                .build()
-                .parseSignedClaims(token);
-            return true;
-        } catch (JwtException e) {
-            return false;
-        }
+   public boolean isTokenValid(String token) {
+    try {
+        Jwts.parser()
+            .verifyWith(getSigningKey())
+            .build()
+            .parseSignedClaims(token);
+        return true;
+    } catch (JwtException e) {
+        System.out.println("JWT INVALIDE: " + e.getMessage());
+        return false;
     }
+}
 }

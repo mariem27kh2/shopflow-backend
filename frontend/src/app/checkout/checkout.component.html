@@ -1,0 +1,63 @@
+<div class="checkout-page">
+
+  <h1>Finaliser la commande</h1>
+
+  <div class="checkout-layout">
+
+    <mat-card class="form-card">
+      <h2>Adresse de livraison</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input matInput [(ngModel)]="adresseLivraison">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Ville</mat-label>
+        <input matInput [(ngModel)]="ville">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Code postal</mat-label>
+        <input matInput [(ngModel)]="codePostal">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Pays</mat-label>
+        <input matInput [(ngModel)]="pays">
+      </mat-form-field>
+
+      <h2>Paiement</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mode de paiement</mat-label>
+        <mat-select [(ngModel)]="modePaiement">
+          <mat-option value="CASH">Paiement à la livraison</mat-option>
+          <mat-option value="CARD">Carte bancaire</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="commander()">
+        Confirmer la commande
+      </button>
+    </mat-card>
+
+    <mat-card class="summary-card" *ngIf="cart">
+      <h2>Résumé panier</h2>
+
+      <div class="item" *ngFor="let item of cart.lignes">
+        <span>{{ item.productNom }} x {{ item.quantite }}</span>
+        <strong>{{ item.sousTotal }} DT</strong>
+      </div>
+
+      <hr>
+
+      <p>Sous-total : {{ cart.sousTotal }} DT</p>
+      <p>Livraison : {{ cart.fraisLivraison === 0 ? 'Gratuite' : cart.fraisLivraison + ' DT' }}</p>
+      <p *ngIf="cart.remise > 0">Remise : - {{ cart.remise }} DT</p>
+      <p class="total">Total : {{ cart.totalTTC }} DT</p>
+    </mat-card>
+
+  </div>
+
+</div>

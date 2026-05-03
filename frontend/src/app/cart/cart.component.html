@@ -1,0 +1,92 @@
+<div class="cart-page">
+
+  <h1>Mon panier</h1>
+
+  <!-- Panier vide -->
+  <div *ngIf="!cart || cart.lignes.length === 0" class="empty">
+    <mat-icon>shopping_cart</mat-icon>
+    <p>Votre panier est vide</p>
+    <button mat-raised-button routerLink="/shop" class="btn-shop">
+      Continuer mes achats
+    </button>
+  </div>
+
+  <!-- Panier avec articles -->
+  <div *ngIf="cart && cart.lignes.length > 0" class="cart-layout">
+
+    <!-- Liste articles -->
+    <div class="items">
+
+      <div class="cart-item" *ngFor="let item of cart.lignes">
+
+        <!-- Image -->
+        <div class="item-image">
+          <img *ngIf="item.productImage" [src]="item.productImage" [alt]="item.productNom">
+          <mat-icon *ngIf="!item.productImage">image</mat-icon>
+        </div>
+
+        <!-- Infos -->
+        <div class="item-info">
+          <h3>{{ item.productNom }}</h3>
+          <p class="item-price">{{ item.productPrix }} DT / unité</p>
+        </div>
+
+        <!-- Quantité -->
+        <div class="item-quantity">
+          <button class="qty-btn" (click)="moins(item.id, item.quantite)">−</button>
+          <span class="qty-value">{{ item.quantite }}</span>
+          <button class="qty-btn" (click)="plus(item.id, item.quantite)">+</button>
+        </div>
+
+        <!-- Sous-total -->
+        <div class="item-subtotal">
+          {{ item.sousTotal }} DT
+        </div>
+
+        <!-- Supprimer -->
+        <button class="delete-btn" (click)="supprimer(item.id)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Résumé commande -->
+    <div class="summary">
+      <h2>Résumé</h2>
+
+      <div class="summary-line">
+        <span>Sous-total</span>
+        <span>{{ cart.sousTotal }} DT</span>
+      </div>
+
+      <div class="summary-line">
+        <span>Livraison</span>
+        <span *ngIf="cart.fraisLivraison > 0">{{ cart.fraisLivraison }} DT</span>
+        <span *ngIf="cart.fraisLivraison === 0" class="free">Gratuite</span>
+      </div>
+
+      <div class="summary-line" *ngIf="cart.remise > 0">
+        <span>Remise</span>
+        <span class="discount">- {{ cart.remise }} DT</span>
+      </div>
+
+      <div class="summary-total">
+        <span>Total</span>
+        <span>{{ cart.totalTTC }} DT</span>
+      </div>
+
+      <button mat-raised-button class="btn-order" routerLink="/checkout">
+        <mat-icon>shopping_bag</mat-icon>
+        Passer la commande
+      </button>
+
+      <button mat-button class="btn-continue" routerLink="/shop">
+        ← Continuer mes achats
+      </button>
+    </div>
+
+  </div>
+
+</div>

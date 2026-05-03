@@ -1,0 +1,85 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+
+    <div class="sidenav-header">
+      <div class="logo-icon">S</div>
+      <div class="logo-text">
+        <p class="logo-name">ShopFlow</p>
+        <p class="logo-desc">Espace administrateur</p>
+      </div>
+    </div>
+
+    <mat-nav-list>
+
+      <!-- Dashboard : Admin + Seller -->
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+
+      <!-- Produits : Admin + Seller -->
+      <a mat-list-item routerLink="/products" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>inventory_2</mat-icon>
+        <span matListItemTitle>Produits</span>
+      </a>
+
+      <!-- Catégories : Admin uniquement -->
+      <a mat-list-item routerLink="/categories" routerLinkActive="active-link" *ngIf="isAdmin()">
+        <mat-icon matListItemIcon>category</mat-icon>
+        <span matListItemTitle>Catégories</span>
+      </a>
+
+      <!-- Commandes clients : Seller uniquement -->
+      <a mat-list-item routerLink="/seller-orders" routerLinkActive="active-link" *ngIf="isSeller()">
+        <mat-icon matListItemIcon>receipt_long</mat-icon>
+        <span matListItemTitle>Commandes clients</span>
+      </a>
+
+      <!-- Commandes : Admin uniquement -->
+      <a mat-list-item routerLink="/admin-orders" routerLinkActive="active-link" *ngIf="isAdmin()">
+        <mat-icon matListItemIcon>receipt_long</mat-icon>
+        <span matListItemTitle>Toutes les commandes</span>
+      </a>
+
+      <!-- Séparateur -->
+      <mat-divider style="border-color: rgba(255,255,255,0.1); margin: 8px 0;"></mat-divider>
+
+      <!-- Lien vers la boutique publique -->
+      <a mat-list-item routerLink="/shop" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>store</mat-icon>
+        <span matListItemTitle>Voir la boutique</span>
+      </a>
+
+    </mat-nav-list>
+
+    <div class="sidenav-footer">
+      <div class="user-badge">
+        <mat-icon>account_circle</mat-icon>
+        <span>{{ getRole() }}</span>
+      </div>
+      <button mat-button class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Déconnexion
+      </button>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+
+    <mat-toolbar class="toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">ShopFlow</span>
+      <span class="spacer"></span>
+    </mat-toolbar>
+
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

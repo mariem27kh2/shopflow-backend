@@ -44,6 +44,14 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllOrders(page, size));
     }
 
+    @GetMapping("/seller")
+    @PreAuthorize("hasRole('SELLER')")
+    public ResponseEntity<Page<OrderResponse>> getSellerOrders(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(orderService.getSellerOrders(page, size));
+    }
+
     @PutMapping("/{id}/status")
     @PreAuthorize("hasAnyRole('SELLER', 'ADMIN')")
     public ResponseEntity<OrderResponse> updateStatus(

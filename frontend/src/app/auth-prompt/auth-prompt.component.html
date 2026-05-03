@@ -1,0 +1,28 @@
+<div class="prompt-container">
+
+  <div class="prompt-icon">
+    <mat-icon>shopping_cart</mat-icon>
+  </div>
+
+  <h2>Connectez-vous pour continuer</h2>
+  <p>Pour ajouter des articles à votre panier, vous devez être connecté.</p>
+
+  <div class="prompt-actions">
+
+    <button mat-raised-button class="btn-login" (click)="goLogin()">
+      <mat-icon>login</mat-icon>
+      Se connecter
+    </button>
+
+    <button mat-raised-button class="btn-register" (click)="goRegister()">
+      <mat-icon>person_add</mat-icon>
+      Créer un compte
+    </button>
+
+  </div>
+
+  <button mat-button class="btn-cancel" (click)="close()">
+    Continuer sans compte
+  </button>
+
+</div>

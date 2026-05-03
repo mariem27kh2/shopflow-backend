@@ -1,0 +1,15 @@
+<!-- Login : aucun layout -->
+<div *ngIf="isLoginPage()">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Admin / Seller : sidebar -->
+<div *ngIf="isSidebarLayout()">
+  <app-template></app-template>
+</div>
+
+<!-- Public / Client / Shop : navbar simple -->
+<div *ngIf="isNavbarLayout()">
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+</div>
