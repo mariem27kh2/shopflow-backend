@@ -7,6 +7,7 @@ import { ChartDataset, ChartOptions } from 'chart.js';
 import { interval, Subscription, forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { API_BASE_URL } from '../services/api.config';
 
 import { ProductService } from '../services/product.service';
 import { CategoryService } from '../services/category.service';
@@ -102,7 +103,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       products: this.PS.GetAllProducts(),
       categories: this.CS.GetAllCategories(),
       orders: this.OS.GetAllOrders(),
-      stats: this.http.get<any>('http://localhost:8081/api/dashboard/stats')
+      stats: this.http.get<any>(`${API_BASE_URL}/api/dashboard/stats`)
         .pipe(catchError(() => of({ nbSellers: 0 })))
     }).subscribe(({ products, categories, orders, stats }) => {
       this.nbProducts = products.length;

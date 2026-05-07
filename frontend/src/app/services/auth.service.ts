@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginRequest, AuthResponse } from '../Models/auth.model';
 import { Observable } from 'rxjs';
+import { API_BASE_URL } from './api.config';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-
-  private apiUrl = 'http://localhost:8081/api/auth';
+  private apiUrl = `${API_BASE_URL}/api/auth`;
 
   constructor(private http: HttpClient) {}
 

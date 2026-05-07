@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_BASE_URL } from './api.config';
 
 export interface Review {
   id: number;
@@ -11,12 +12,9 @@ export interface Review {
   approuve: boolean;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ReviewService {
-
-  private apiUrl = 'http://localhost:8081/api/reviews';
+  private apiUrl = `${API_BASE_URL}/api/reviews`;
 
   constructor(private http: HttpClient) {}
 
