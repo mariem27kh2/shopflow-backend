@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { API_BASE_URL } from '../services/api.config';
 
 @Component({
   selector: 'app-register',
@@ -54,7 +55,7 @@ export class RegisterComponent {
       role: 'CUSTOMER'
     };
 
-    this.http.post<any>('http://localhost:8081/api/auth/register', data).subscribe({
+    this.http.post<any>(`${API_BASE_URL}/api/auth/register`, data).subscribe({
       next: (res) => {
         // Connexion automatique après inscription
         this.AS.saveToken(res.accessToken);

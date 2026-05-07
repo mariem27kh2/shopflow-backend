@@ -8,36 +8,45 @@
       <h2>Adresse de livraison</h2>
 
       <mat-form-field appearance="outline">
-        <mat-label>Adresse</mat-label>
-        <input matInput [(ngModel)]="adresseLivraison">
+        <mat-label>Adresse <span class="required">*</span></mat-label>
+        <input matInput [(ngModel)]="adresseLivraison" placeholder="Ex: 12 Rue Habib Bourguiba">
+        <mat-hint>Champ obligatoire</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Ville</mat-label>
-        <input matInput [(ngModel)]="ville">
+        <mat-label>Ville <span class="required">*</span></mat-label>
+        <input matInput [(ngModel)]="ville" placeholder="Ex: Tunis">
+        <mat-hint>Champ obligatoire</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Code postal</mat-label>
-        <input matInput [(ngModel)]="codePostal">
+        <mat-label>Code postal <span class="required">*</span></mat-label>
+        <input matInput [(ngModel)]="codePostal" placeholder="Ex: 1000">
+        <mat-hint>Champ obligatoire</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Pays</mat-label>
+        <mat-label>Pays <span class="required">*</span></mat-label>
         <input matInput [(ngModel)]="pays">
       </mat-form-field>
 
       <h2>Paiement</h2>
 
       <mat-form-field appearance="outline">
-        <mat-label>Mode de paiement</mat-label>
+        <mat-label>Mode de paiement <span class="required">*</span></mat-label>
         <mat-select [(ngModel)]="modePaiement">
           <mat-option value="CASH">Paiement à la livraison</mat-option>
           <mat-option value="CARD">Carte bancaire</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="commander()">
+      <!-- Message erreur -->
+      <div class="error-msg" *ngIf="errorMsg">
+        <mat-icon>error_outline</mat-icon>
+        {{ errorMsg }}
+      </div>
+
+      <button mat-raised-button (click)="commander()">
         Confirmer la commande
       </button>
     </mat-card>

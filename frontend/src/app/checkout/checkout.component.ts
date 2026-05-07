@@ -17,8 +17,8 @@ export class CheckoutComponent implements OnInit {
   ville: string = '';
   codePostal: string = '';
   pays: string = 'Tunisie';
-
   modePaiement: string = 'CASH';
+  errorMsg: string = '';
 
   constructor(
     private CS: CartService,
@@ -33,8 +33,18 @@ export class CheckoutComponent implements OnInit {
   }
 
   commander() {
-    if (!this.adresseLivraison || !this.ville || !this.codePostal) {
-      alert('Veuillez remplir l’adresse complète');
+    this.errorMsg = '';
+
+    if (!this.adresseLivraison.trim()) {
+      this.errorMsg = 'L\'adresse est obligatoire *';
+      return;
+    }
+    if (!this.ville.trim()) {
+      this.errorMsg = 'La ville est obligatoire *';
+      return;
+    }
+    if (!this.codePostal.trim()) {
+      this.errorMsg = 'Le code postal est obligatoire *';
       return;
     }
 
@@ -45,12 +55,11 @@ export class CheckoutComponent implements OnInit {
 
     this.OS.CreateOrder(data).subscribe({
       next: () => {
-        alert('Commande créée avec succès');
         this.router.navigate(['/orders']);
       },
       error: (err) => {
+        this.errorMsg = 'Erreur lors de la création de la commande';
         console.log(err);
-        alert('Erreur lors de la création de la commande');
       }
     });
   }

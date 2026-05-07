@@ -60,6 +60,30 @@ mat-form-field {
   font-size: 14px;
 }
 
+.required {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.error-msg mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
 .summary-card {
   padding: 24px !important;
   border-radius: 18px !important;
