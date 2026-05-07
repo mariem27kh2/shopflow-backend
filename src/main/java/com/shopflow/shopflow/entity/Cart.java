@@ -22,7 +22,7 @@ public class Cart {
     @JoinColumn(name = "customer_id", nullable = false)
     private User customer;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER) 
     private List<CartItem> lignes = new ArrayList<>();
 
     private LocalDateTime dateModification;

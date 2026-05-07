@@ -28,7 +28,7 @@ public class ReviewService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new BusinessException("Utilisateur non trouvé"));
     }
-
+// Méthode utilitaire pour convertir une entité Review en DTO ReviewResponse, en incluant le nom complet du client, la note, le commentaire, la date de création, et le statut d'approbation de l'avis
     private ReviewResponse toResponse(Review review) {
         ReviewResponse response = new ReviewResponse();
         response.setId(review.getId());
@@ -40,7 +40,7 @@ public class ReviewService {
         response.setApprouve(review.isApprouve());
         return response;
     }
-
+// Méthode pour créer un avis sur un produit, en vérifiant que le client a acheté le produit avant de permettre la création de l'avis, en s'assurant qu'un client ne peut laisser qu'un seul avis par produit, et en enregistrant l'avis avec un statut d'approbation initial à false pour une modération ultérieure
     @Transactional
     public ReviewResponse createReview(ReviewRequest request) {
         User customer = getCurrentUser();
@@ -85,6 +85,12 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    public List<ReviewResponse> getPendingReviews() {
+        return reviewRepository.findByApprouveFalse()
+                .stream().map(this::toResponse)
+                .collect(Collectors.toList());
+    }
+// Méthode pour approuver un avis, en mettant à jour le statut d'approbation de l'avis à true pour le rendre visible sur la plateforme, et en retournant la réponse avec les détails de l'avis approuvé
     @Transactional
     public ReviewResponse approveReview(Long id) {
         Review review = reviewRepository.findById(id)

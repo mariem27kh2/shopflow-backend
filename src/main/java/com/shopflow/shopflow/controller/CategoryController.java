@@ -10,7 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+// Contrôleur REST pour gérer les catégories de produits, avec des opérations CRUD protégées par des autorisations d'administrateur
 @RestController
 @RequestMapping("/api/categories")
 @RequiredArgsConstructor

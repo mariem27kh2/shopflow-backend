@@ -10,7 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-
+// Contrôleur REST pour gérer les tableaux de bord des différents types d'utilisateurs (administrateurs, vendeurs, clients) et fournir des statistiques globales sur la plateforme
 @RestController
 @RequestMapping("/api/dashboard")
 @RequiredArgsConstructor

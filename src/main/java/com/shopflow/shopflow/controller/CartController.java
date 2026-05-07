@@ -7,7 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+// Contrôleur REST pour gérer les opérations liées au panier d'achat, telles que l'ajout, la mise à jour et la suppression d'articles, ainsi que l'application de coupons de réduction
 @RestController
 @RequestMapping("/api/cart")
 @RequiredArgsConstructor
@@ -28,7 +28,7 @@ public class CartController {
 
     @PutMapping("/items/{itemId}")
     public ResponseEntity<CartResponse> updateItem(
-            @PathVariable Long itemId,
+            @PathVariable Long itemId, 
             @RequestParam Integer quantite) {
         return ResponseEntity.ok(cartService.updateItem(itemId, quantite));
     }
@@ -41,7 +41,7 @@ public class CartController {
 
     @PostMapping("/coupon")
     public ResponseEntity<CartResponse> applyCoupon(
-            @RequestParam String code) {
+            @RequestParam String code) { 
         return ResponseEntity.ok(cartService.applyCoupon(code));
     }
 

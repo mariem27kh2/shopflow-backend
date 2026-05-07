@@ -1,0 +1,141 @@
+.reviews-page {
+  padding: 28px 32px;
+  background: #f6f4ff;
+  min-height: 100vh;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+h1 { margin: 0; font-size: 26px; font-weight: 800; color: #111827; }
+.subtitle { margin: 4px 0 0; color: #6b7280; font-size: 14px; }
+
+.refresh-btn {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: 700;
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: 60px;
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #ede9fe;
+  color: #6b7280;
+}
+
+.loading mat-icon, .empty mat-icon {
+  font-size: 48px; width: 48px; height: 48px;
+  color: #c4b5fd; display: block; margin: 0 auto 12px;
+}
+
+.empty mat-icon { color: #22c55e; }
+
+/* Carte avis */
+.review-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #ede9fe;
+  padding: 20px 24px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.05);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 16px;
+  text-transform: uppercase;
+}
+
+.name {
+  display: block;
+  font-weight: 700; font-size: 14px; color: #111827;
+}
+
+.date {
+  display: block;
+  font-size: 12px; color: #9ca3af;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  color: #f59e0b;
+}
+
+.note {
+  margin-left: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.comment {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  padding: 12px;
+  background: #faf8ff;
+  border-radius: 8px;
+  border-left: 3px solid #7c3aed;
+}
+
+.review-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge-pending {
+  background: #fef3c7;
+  color: #d97706;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.btn-approve {
+  background: linear-gradient(135deg, #22c55e, #4ade80) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  font-weight: 700;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-approve mat-icon {
+  font-size: 16px; width: 16px; height: 16px;
+}

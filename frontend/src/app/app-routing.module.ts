@@ -18,6 +18,8 @@ import { adminSellerGuard } from './services/adminSellerGuard';
 
 import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
 
+import { ReviewsPendingComponent } from './reviews-pending/reviews-pending.component';
+
 const routes: Routes = [
   { path: '', component: ShopComponent },
   { path: 'shop', component: ShopComponent },
@@ -32,6 +34,7 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent, canActivate: [adminSellerGuard] },
   { path: 'admin-orders', component: AdminOrdersComponent, canActivate: [adminSellerGuard] },
   { path: 'seller-orders', component: SellerOrdersComponent, canActivate: [adminSellerGuard] },
+  { path: 'reviews-pending', component: ReviewsPendingComponent, canActivate: [adminSellerGuard] },
   { path: '**', redirectTo: '' }
 ];
 

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-
+// Service de gestion des commandes, permettant de créer une commande à partir du panier de l'utilisateur, de récupérer les commandes d'un client, d'un vendeur ou de tous les utilisateurs (pour l'administrateur), de mettre à jour le statut d'une commande, et d'annuler une commande. Les méthodes utilisent des transactions pour garantir l'intégrité des données lors de la création, mise à jour et annulation des commandes, vérifient les stocks disponibles avant de passer une commande, appliquent les coupons de réduction si présents, et convertissent les entités Order en DTO OrderResponse pour la communication avec les contrôleurs et les clients de l'API.
 @Service
 @RequiredArgsConstructor
 public class OrderService {

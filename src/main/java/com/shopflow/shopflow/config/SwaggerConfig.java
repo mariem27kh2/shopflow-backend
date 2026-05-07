@@ -10,17 +10,17 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
-
-    @Bean
+// configuration de base pour OpenAPI/Swagger, avec ajout de la sécurité JWT dans la documentation
+    @Bean // permet de personnaliser la documentation OpenAPI
     public OpenAPI customOpenAPI() {
-        final String securitySchemeName = "bearerAuth";
+        final String securitySchemeName = "bearerAuth"; 
 
         return new OpenAPI()
                 .info(new Info()
                         .title("ShopFlow API")
                         .version("1.0")
                         .description("Documentation API de ShopFlow"))
-                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
+                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName)) // indique que toutes les opérations nécessitent ce schéma de sécurité
                 .components(new Components()
                         .addSecuritySchemes(securitySchemeName,
                                 new SecurityScheme()

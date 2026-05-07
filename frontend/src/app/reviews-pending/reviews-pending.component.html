@@ -1,0 +1,55 @@
+<div class="reviews-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Avis en attente</h1>
+      <p class="subtitle">Approuvez les avis clients avant publication</p>
+    </div>
+    <button mat-raised-button class="refresh-btn" (click)="loadReviews()">
+      <mat-icon>refresh</mat-icon> Actualiser
+    </button>
+  </div>
+
+  <!-- Chargement -->
+  <div *ngIf="loading" class="loading">
+    <mat-icon>hourglass_empty</mat-icon>
+    <p>Chargement...</p>
+  </div>
+
+  <!-- Aucun avis -->
+  <div *ngIf="!loading && reviews.length === 0" class="empty">
+    <mat-icon>check_circle</mat-icon>
+    <p>Aucun avis en attente de validation</p>
+  </div>
+
+  <!-- Liste des avis -->
+  <div class="review-card" *ngFor="let r of reviews">
+
+    <div class="review-header">
+      <div class="reviewer">
+        <div class="avatar">{{ r.customerNom.charAt(0) }}</div>
+        <div>
+          <span class="name">{{ r.customerNom }}</span>
+          <span class="date">{{ r.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
+        </div>
+      </div>
+
+      <div class="stars">
+        <mat-icon *ngFor="let s of getStars(r.note)" class="star">{{ s }}</mat-icon>
+        <span class="note">{{ r.note }}/5</span>
+      </div>
+    </div>
+
+    <p class="comment">{{ r.commentaire }}</p>
+
+    <div class="review-actions">
+      <span class="badge-pending">En attente</span>
+      <button mat-raised-button class="btn-approve" (click)="approve(r.id)">
+        <mat-icon>check</mat-icon>
+        Approuver
+      </button>
+    </div>
+
+  </div>
+
+</div>

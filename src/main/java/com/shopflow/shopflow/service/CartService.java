@@ -25,7 +25,7 @@ public class CartService {
     private final ProductVariantRepository productVariantRepository;
     private final UserRepository userRepository;
     private final CouponRepository couponRepository;
-
+// Récupérer l'utilisateur actuellement authentifié à partir du contexte de sécurité de Spring Security, en utilisant son email pour charger les détails de l'utilisateur à partir de la base de données
     private User getCurrentUser() {
         String email = SecurityContextHolder.getContext()
                 .getAuthentication().getName();
@@ -50,7 +50,7 @@ public class CartService {
         CartResponse response = new CartResponse();
         response.setId(cart.getId());
         response.setCodeCoupon(cart.getCodeCoupon());
-
+// Convertir les lignes du panier en DTO
         List<CartResponse.CartItemResponse> lignes = cart.getLignes()
                 .stream().map(item -> {
                     CartResponse.CartItemResponse r =

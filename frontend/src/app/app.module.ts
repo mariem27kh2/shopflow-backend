@@ -51,6 +51,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthPromptComponent } from './auth-prompt/auth-prompt.component';
 import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
+import { ReviewsPendingComponent } from './reviews-pending/reviews-pending.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { SellerOrdersComponent } from './seller-orders/seller-orders.component';
     NavbarComponent,
     RegisterComponent,
     AuthPromptComponent,
-    SellerOrdersComponent
+    SellerOrdersComponent,
+    ReviewsPendingComponent
   ],
   imports: [
     BrowserModule,

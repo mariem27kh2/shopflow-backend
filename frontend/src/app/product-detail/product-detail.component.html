@@ -1,59 +1,134 @@
 <div class="detail-page" *ngIf="product">
 
-  <button mat-button color="primary" (click)="retour()">
-    ← Retour à la boutique
+  <button class="btn-back" (click)="retour()">
+    <mat-icon>arrow_back</mat-icon> Retour à la boutique
   </button>
 
+  <!-- Carte produit -->
   <div class="detail-card">
 
     <div class="image-box">
-      <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0]">
+      <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0]" [alt]="product.nom">
       <div *ngIf="!product.images || product.images.length === 0" class="no-image">
         <mat-icon>image</mat-icon>
       </div>
+      <span class="promo-tag" *ngIf="product.prixPromo">
+        -{{ product.pourcentageRemise }}%
+      </span>
     </div>
 
     <div class="info-box">
+      <p class="category-tag">{{ product.categories.join(', ') }}</p>
       <h1>{{ product.nom }}</h1>
 
-      <p class="categories">
-        {{ product.categories.join(', ') }}
-      </p>
-
-      <p class="description">
-        {{ product.description }}
-      </p>
-
-      <div class="price-box">
-        <span class="promo" *ngIf="product.prixPromo">
-          {{ product.prixPromo }} DT
+      <!-- Note moyenne -->
+      <div class="rating-row">
+        <span class="star" *ngFor="let s of getStars(getMoyenne())">
+          <mat-icon>{{ s }}</mat-icon>
         </span>
-
-        <span [class.old-price]="product.prixPromo">
-          {{ product.prix }} DT
+        <span class="rating-text">
+          {{ getMoyenne() }}/5 — {{ reviews.length }} avis
         </span>
       </div>
 
-      <p class="stock" [class.out]="product.stock === 0">
-        Stock disponible : {{ product.stock }}
+      <p class="description">{{ product.description }}</p>
+
+      <div class="price-box">
+        <span class="promo-price" *ngIf="product.prixPromo">{{ product.prixPromo }} DT</span>
+        <span [class.old-price]="product.prixPromo">{{ product.prix }} DT</span>
+      </div>
+
+      <p class="stock-info" [class.out]="product.stock === 0">
+        <mat-icon>{{ product.stock > 0 ? 'check_circle' : 'cancel' }}</mat-icon>
+        {{ product.stock > 0 ? 'En stock (' + product.stock + ')' : 'Rupture de stock' }}
       </p>
 
-      <p class="seller">
-        Vendeur : {{ product.sellerNom }}
+      <p class="seller-info">
+        <mat-icon>store</mat-icon> {{ product.sellerNom }}
       </p>
 
-      <p class="rating">
-        Note : {{ product.noteMoyenne || 0 }} / 5 —
-        Avis : {{ product.nombreAvis || 0 }}
-      </p>
-
-      <button mat-raised-button (click)="ajouterPanier()"
+      <button class="btn-cart" (click)="ajouterPanier()"
         *ngIf="peutAjouterPanier()"
         [disabled]="product.stock === 0"
         [class.added]="added">
         <mat-icon>{{ added ? 'check' : 'add_shopping_cart' }}</mat-icon>
-        {{ added ? 'Ajouté au panier !' : (AS.isLoggedIn() ? 'Ajouter au panier' : 'Se connecter pour commander') }}
+        {{ added ? 'Ajouté !' : (AS.isLoggedIn() ? 'Ajouter au panier' : 'Commander') }}
       </button>
+    </div>
+
+  </div>
+
+  <!-- Section Avis -->
+  <div class="reviews-section">
+
+    <div class="reviews-header">
+      <h2>Avis clients ({{ reviews.length }})</h2>
+
+      <!-- Bouton laisser un avis -->
+      <button class="btn-review" *ngIf="peutLaisserAvis() && !showReviewForm && !reviewSubmitted"
+        (click)="showReviewForm = true">
+        <mat-icon>rate_review</mat-icon>
+        Laisser un avis
+      </button>
+    </div>
+
+    <!-- Message succès -->
+    <div class="review-success" *ngIf="reviewSubmitted">
+      <mat-icon>check_circle</mat-icon>
+      Votre avis a été soumis et sera visible après validation.
+    </div>
+
+    <!-- Formulaire avis -->
+    <div class="review-form" *ngIf="showReviewForm">
+      <h3>Votre avis</h3>
+
+      <div class="star-selector">
+        <span *ngFor="let s of stars" class="star-btn"
+          [class.active]="s <= newNote"
+          (click)="setNote(s)">
+          <mat-icon>{{ s <= newNote ? 'star' : 'star_border' }}</mat-icon>
+        </span>
+        <span class="note-label">{{ newNote }}/5</span>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Votre commentaire</mat-label>
+        <textarea matInput [(ngModel)]="newCommentaire" rows="3"
+          placeholder="Partagez votre expérience..."></textarea>
+      </mat-form-field>
+
+      <div *ngIf="reviewError" class="review-error">
+        <mat-icon>error_outline</mat-icon> {{ reviewError }}
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-cancel-review" (click)="showReviewForm = false">Annuler</button>
+        <button class="btn-submit-review" (click)="submitReview()">
+          <mat-icon>send</mat-icon> Envoyer
+        </button>
+      </div>
+    </div>
+
+    <!-- Liste des avis -->
+    <div *ngIf="reviews.length === 0 && !reviewSubmitted" class="no-reviews">
+      <mat-icon>chat_bubble_outline</mat-icon>
+      <p>Aucun avis pour ce produit. Soyez le premier !</p>
+    </div>
+
+    <div class="review-card" *ngFor="let r of reviews">
+      <div class="review-top">
+        <div class="reviewer">
+          <div class="avatar">{{ r.customerNom.charAt(0) | uppercase }}</div>
+          <div>
+            <span class="reviewer-name">{{ r.customerNom }}</span>
+            <span class="review-date">{{ r.dateCreation | date:'dd/MM/yyyy' }}</span>
+          </div>
+        </div>
+        <div class="review-stars">
+          <mat-icon *ngFor="let s of getStars(r.note)" class="star-icon">{{ s }}</mat-icon>
+        </div>
+      </div>
+      <p class="review-comment">{{ r.commentaire }}</p>
     </div>
 
   </div>

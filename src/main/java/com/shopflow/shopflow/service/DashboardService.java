@@ -17,14 +17,14 @@ public class DashboardService {
     private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;
     private final ProductService productService;
-
+// Méthode utilitaire pour récupérer l'utilisateur actuellement authentifié à partir du contexte de sécurité de Spring Security, en utilisant son email pour charger les détails de l'utilisateur à partir de la base de données
     private User getCurrentUser() {
         String email = SecurityContextHolder.getContext()
                 .getAuthentication().getName();
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
-
+// Méthode pour récupérer les données du tableau de bord de l'administrateur, en calculant le chiffre d'affaires global, le nombre total de commandes, d'utilisateurs et de produits, et en récupérant les produits les plus vendus pour afficher des statistiques pertinentes sur la plateforme
     public DashboardResponse getAdminDashboard() {
         DashboardResponse response = new DashboardResponse();
 
@@ -43,7 +43,7 @@ public class DashboardService {
 
         return response;
     }
-
+// Méthode pour récupérer les données du tableau de bord du vendeur, en calculant les revenus du vendeur, le nombre de commandes en attente, et le nombre de produits avec un stock faible pour fournir des statistiques pertinentes sur les performances du vendeur sur la plateforme
     public DashboardResponse getSellerDashboard() {
         User seller = getCurrentUser();
         DashboardResponse response = new DashboardResponse();
@@ -72,7 +72,7 @@ public class DashboardService {
 
         return response;
     }
-
+// Méthode pour récupérer les données du tableau de bord du client, en calculant le nombre de commandes en cours et le nombre d'avis laissés par le client pour fournir des statistiques pertinentes sur l'activité du client sur la plateforme
     public DashboardResponse getCustomerDashboard() {
         User customer = getCurrentUser();
         DashboardResponse response = new DashboardResponse();

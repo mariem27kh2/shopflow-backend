@@ -9,22 +9,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/api/auth")
-@RequiredArgsConstructor
+@RestController // indique que cette classe est un contrôleur REST, capable de gérer les requêtes HTTP et de retourner des réponses JSON
+@RequestMapping("/api/auth") 
+@RequiredArgsConstructor // génère un constructeur avec tous les champs finaux, ce qui permet d'injecter AuthService via le constructeur
 public class AuthController {
 
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(
+    public ResponseEntity<AuthResponse> register( 
             @Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
-            @Valid @RequestBody LoginRequest request) {
+            @Valid @RequestBody LoginRequest request) { 
         return ResponseEntity.ok(authService.login(request));
     }
 }

@@ -23,19 +23,19 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity //authorization par role dans controlleur et service 
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtAuthFilter jwtAuthFilter;
+    private final JwtAuthFilter jwtAuthFilter; // verifie token dans chaque requete
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { //coeur de la configration sécuritee
         http
             // ✅ CORS ajouté ici
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session ->
+            .csrf(csrf -> csrf.disable()) // désactive CSRF pour les API REST
+            .sessionManagement(session -> 
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
@@ -58,11 +58,12 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // ✅ Bean CORS ajouté
+    //  Bean CORS ajouté
+    //cors autorise le frontend angular a acceder a l'api spring boot sans probleme de politique de meme origine
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200"));
+        config.setAllowedOrigins(List.of("http://localhost:4200")); // autorise le frontend Angular
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
@@ -78,8 +79,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager( // permet d'injecter AuthenticationManager dans les services
+            AuthenticationConfiguration config) throws Exception { // permet d'obtenir l'AuthenticationManager à partir de la configuration d'authentification
         return config.getAuthenticationManager();
     }
 }

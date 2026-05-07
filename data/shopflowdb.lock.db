@@ -1,6 +1,6 @@
 #FileLock
-#Fri May 01 19:23:16 UTC 2026
-hostName=192.168.0.184
-id=19de4fec36cea46c4fc482edcba0e8c13a1ec3f9a00
+#Mon May 04 08:53:41 UTC 2026
+hostName=mariem
+id=19df23162715b0c16475f87b91513639b0ae2c5e0a9
 method=file
-server=192.168.0.184\:63500
+server=10.10.17.132\:53264

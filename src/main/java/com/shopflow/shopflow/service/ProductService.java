@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+// Service de gestion des produits, permettant de récupérer une liste paginée de produits actifs, de récupérer le détail d'un produit, de rechercher des produits par nom ou description, de créer un nouveau produit, de modifier un produit existant, de désactiver un produit (soft delete), de récupérer les produits les plus vendus, et de récupérer les produits en promotion. Les méthodes utilisent des transactions pour garantir l'intégrité des données lors de la création, mise à jour et suppression des produits, vérifient les autorisations de l'utilisateur connecté pour les opérations sensibles, et convertissent les entités Product en DTO ProductResponse pour la communication avec les contrôleurs et les clients de l'API.
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -144,6 +144,7 @@ public class ProductService {
             product.setCategories(
                     categoryRepository.findAllById(request.getCategorieIds()));
         }
+        // Toujours mettre à jour les images (même liste vide)
         if (request.getImages() != null) {
             product.setImages(request.getImages());
         }

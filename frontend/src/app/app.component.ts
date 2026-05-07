@@ -32,7 +32,8 @@ export class AppComponent {
       || this.currentUrl.startsWith('/products')
       || this.currentUrl.startsWith('/categories')
       || this.currentUrl.startsWith('/admin-orders')
-      || this.currentUrl.startsWith('/seller-orders');
+      || this.currentUrl.startsWith('/seller-orders')
+      || this.currentUrl.startsWith('/reviews-pending');
   }
 
   // Navbar publique → tout le reste (shop, cart, orders, checkout, product/:id)

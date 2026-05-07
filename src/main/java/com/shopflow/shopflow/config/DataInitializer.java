@@ -118,7 +118,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Le flagship ultime de Samsung avec stylet S Pen intégré, écran Dynamic AMOLED 6.8\", processeur Snapdragon 8 Gen 3, 12 Go RAM, 256 Go stockage.")
                             .prix(4299.0).prixPromo(3899.0).stock(15).actif(true).seller(seller1)
                             .categories(List.of(smartphones, elec))
-                            .images(List.of("https://images.samsung.com/is/image/samsung/p6pim/levant/2401/gallery/levant-galaxy-s24-ultra-s928-sm-s928bzkgmea-thumb-539573424"))
+                            .images(List.of("https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=800&q=80"))
                             .build());
 
                     productRepository.save(Product.builder()
@@ -126,7 +126,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Apple iPhone 15 Pro Max avec puce A17 Pro, écran Super Retina XDR 6.7\", système de caméra pro 48MP, titane naturel.")
                             .prix(5499.0).prixPromo(4999.0).stock(10).actif(true).seller(seller1)
                             .categories(List.of(smartphones, elec))
-                            .images(List.of("https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=800&hei=800&fmt=jpeg"))
+                            .images(List.of("https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"))
                             .build());
 
                     productRepository.save(Product.builder()
@@ -134,7 +134,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Smartphone milieu de gamme avec écran AMOLED 6.67\" 120Hz, appareil photo 200MP, batterie 5100mAh, charge rapide 67W.")
                             .prix(1299.0).prixPromo(1099.0).stock(30).actif(true).seller(seller1)
                             .categories(List.of(smartphones, elec))
-                            .images(List.of("https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-13-pro/M/a3b3b3b3b3b3b3b3.png"))
+                            .images(List.of("https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=80"))
                             .build());
 
                     // ── LAPTOPS ──
@@ -143,7 +143,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Ordinateur portable Apple avec puce M3, 8 Go RAM, 256 Go SSD, écran Liquid Retina 13.6\", autonomie 18h. Ultra-léger 1.24 kg.")
                             .prix(5999.0).prixPromo(5499.0).stock(8).actif(true).seller(seller1)
                             .categories(List.of(laptops, elec))
-                            .images(List.of("https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=800&hei=800&fmt=jpeg"))
+                            .images(List.of("https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80"))
                             .build());
 
                     productRepository.save(Product.builder()
@@ -151,7 +151,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Laptop premium avec écran OLED 15.6\" 3.5K, Intel Core i7-13700H, 16 Go DDR5, 512 Go NVMe SSD, NVIDIA RTX 4060.")
                             .prix(6499.0).stock(5).actif(true).seller(seller1)
                             .categories(List.of(laptops, elec))
-                            .images(List.of("https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9530/media-gallery/black/notebook-xps-15-9530-t-black-gallery-4.psd?fmt=jpg&wid=800"))
+                            .images(List.of("https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&q=80"))
                             .build());
 
                     productRepository.save(Product.builder()
@@ -159,7 +159,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("PC portable gaming avec AMD Ryzen 5 7535HS, 8 Go RAM, 512 Go SSD, NVIDIA GTX 1650, écran FHD 144Hz.")
                             .prix(2799.0).prixPromo(2499.0).stock(12).actif(true).seller(seller1)
                             .categories(List.of(laptops, elec))
-                            .images(List.of("https://ssl-product-images.www8-hp.com/digmedialib/prodimg/knowledgebase/c08228793.png"))
+                            .images(List.of("https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&q=80"))
                             .build());
 
                     // ── AUDIO ──
@@ -168,7 +168,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Casque sans fil à réduction de bruit active leader du marché. Autonomie 30h, charge rapide, son Hi-Res Audio, confort premium.")
                             .prix(1299.0).prixPromo(999.0).stock(20).actif(true).seller(seller1)
                             .categories(List.of(audio, elec))
-                            .images(List.of("https://www.sony.com/image/5d02da5df552836db894cead8a68f5f3?fmt=png-alpha&wid=800"))
+                            .images(List.of("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80"))
                             .build());
 
                     productRepository.save(Product.builder()
@@ -176,7 +176,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Écouteurs Apple avec réduction de bruit active H2, audio spatial personnalisé, résistance à l'eau IPX4, autonomie 6h.")
                             .prix(1099.0).stock(25).actif(true).seller(seller1)
                             .categories(List.of(audio, elec))
-                            .images(List.of("https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQD83?wid=800&hei=800&fmt=jpeg"))
+                            .images(List.of("https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&q=80"))
                             .build());
 
                     productRepository.save(Product.builder()
@@ -184,7 +184,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Enceinte portable waterproof IP67, son puissant 40W, autonomie 20h, powerbank intégrée, connexion multi-appareils.")
                             .prix(699.0).prixPromo(599.0).stock(18).actif(true).seller(seller1)
                             .categories(List.of(audio, elec))
-                            .images(List.of("https://www.jbl.com/dw/image/v2/AAUJ_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw3c3b3b3b/JBL_CHARGE5_HERO_BLK_32845_x2.png?sw=800"))
+                            .images(List.of("https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&q=80"))
                             .build());
 
                     // ── TV ──
@@ -193,7 +193,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Télévision QLED 55 pouces 4K UHD, processeur Neural Quantum, HDR10+, Smart TV Tizen, 4 ports HDMI 2.1, taux de rafraîchissement 120Hz.")
                             .prix(3499.0).prixPromo(2999.0).stock(6).actif(true).seller(seller1)
                             .categories(List.of(tv, elec))
-                            .images(List.of("https://images.samsung.com/is/image/samsung/p6pim/levant/qa55q80cauxzn/gallery/levant-qled-q80c-qa55q80cauxzn-536861985?wid=800"))
+                            .images(List.of("https://images.unsplash.com/photo-1593359677879-a4bb92f4834c?w=800&q=80"))
                             .build());
                 }
 
@@ -255,7 +255,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Chaussures de sport Nike Air Max 270, unité Air visible 270°, tige en mesh respirant, semelle intermédiaire en mousse. Pointures 38-46.")
                             .prix(599.0).prixPromo(499.0).stock(30).actif(true).seller(seller2)
                             .categories(List.of(chaussures, mode))
-                            .images(List.of("https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/skwgyqrbfzhu6uyeh0gg/air-max-270-shoes-2V5C4p.png"))
+                            .images(List.of("https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"))
                             .build());
 
                     productRepository.save(Product.builder()
@@ -263,7 +263,7 @@ public class DataInitializer implements CommandLineRunner {
                             .description("Sneakers iconiques Adidas Stan Smith en cuir blanc, semelle caoutchouc, languette verte emblématique. Le classique indémodable.")
                             .prix(449.0).stock(25).actif(true).seller(seller2)
                             .categories(List.of(chaussures, mode))
-                            .images(List.of("https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/68ae7ea7849b43eca70aac1e00f5146d_9366/Stan_Smith_Shoes_White_FX5502_01_standard.jpg"))
+                            .images(List.of("https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80"))
                             .build());
                 }
 

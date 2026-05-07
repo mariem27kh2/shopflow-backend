@@ -14,8 +14,8 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   private refreshSub!: Subscription;
 
   statuts: string[] = [
-    'PENDING', 'PAID', 'PROCESSING', 
-    'DELIVERED', 'CANCELLED'
+    'PENDING', 'PAID', 'PROCESSING', 'SHIPPED',
+    'DELIVERED', 'CANCELLED', 'REFUNDED'
   ];
 
   constructor(private OS: OrderService) {}

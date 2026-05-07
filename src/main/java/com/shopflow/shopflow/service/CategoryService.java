@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+// Service de gestion des catégories de produits, permettant de récupérer toutes les catégories, de créer une nouvelle catégorie (avec une catégorie parente optionnelle), de mettre à jour une catégorie existante, et de supprimer une catégorie. Les méthodes utilisent des transactions pour garantir l'intégrité des données lors des opérations de création, mise à jour et suppression, et convertissent les entités Category en DTO CategoryResponse pour la communication avec les contrôleurs et les clients de l'API.
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -56,7 +56,7 @@ public class CategoryService {
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
-
+// Méthode utilitaire pour convertir une entité Category en DTO CategoryResponse, en incluant l'ID de la catégorie parente si elle existe
     private CategoryResponse toResponse(Category category) {
         Long parentId = category.getParent() != null ? category.getParent().getId() : null;
 

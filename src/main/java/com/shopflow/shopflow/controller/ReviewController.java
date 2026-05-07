@@ -5,7 +5,7 @@ import com.shopflow.shopflow.dto.response.ReviewResponse;
 import com.shopflow.shopflow.service.ReviewService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity; 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -28,6 +28,12 @@ public class ReviewController {
     public ResponseEntity<List<ReviewResponse>> getProductReviews(
             @PathVariable Long productId) {
         return ResponseEntity.ok(reviewService.getProductReviews(productId));
+    }
+
+    @GetMapping("/pending")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<ReviewResponse>> getPendingReviews() {
+        return ResponseEntity.ok(reviewService.getPendingReviews());
     }
 
     @PutMapping("/{id}/approve")

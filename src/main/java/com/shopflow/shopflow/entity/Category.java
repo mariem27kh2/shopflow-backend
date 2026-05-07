@@ -26,7 +26,7 @@ public class Category {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    @JsonIgnore
+    @JsonIgnore // ignore boucle infinie lors de la sérialisation JSON
     private Category parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)

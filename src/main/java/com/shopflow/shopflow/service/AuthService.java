@@ -16,7 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+// Service d'authentification pour gérer les processus d'inscription et de connexion des utilisateurs, en vérifiant les informations d'identification, en générant des tokens JWT pour les sessions authentifiées, et en gérant les rôles et les profils des utilisateurs (notamment pour les vendeurs) dans la base de données.
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -26,14 +26,14 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-
+// Méthode d'inscription pour créer un nouvel utilisateur, vérifier que l'email n'est pas déjà utilisé, encoder le mot de passe, attribuer un rôle (ADMIN, SELLER ou CUSTOMER), créer un profil de vendeur si nécessaire, et générer des tokens JWT pour la session authentifiée
     @Transactional
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new BusinessException("Email déjà utilisé !");
         }
 
-        // ✅ ADMIN, SELLER, CUSTOMER tous acceptés
+        //  ADMIN, SELLER, CUSTOMER tous acceptés
         Role role;
         if ("ADMIN".equalsIgnoreCase(request.getRole())) {
             role = Role.ADMIN;

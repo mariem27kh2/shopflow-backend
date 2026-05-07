@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
+// Contrôleur REST pour gérer les commandes, avec des opérations pour créer une commande, consulter les commandes d'un client, consulter les détails d'une commande, et pour les vendeurs et administrateurs de gérer les commandes (consulter toutes les commandes, mettre à jour le statut, annuler une commande)
 @RestController
 @RequestMapping("/api/orders")
 @RequiredArgsConstructor

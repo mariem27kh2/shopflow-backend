@@ -42,6 +42,12 @@
         <span matListItemTitle>Toutes les commandes</span>
       </a>
 
+      <!-- Avis en attente : Admin uniquement -->
+      <a mat-list-item routerLink="/reviews-pending" routerLinkActive="active-link" *ngIf="isAdmin()">
+        <mat-icon matListItemIcon>rate_review</mat-icon>
+        <span matListItemTitle>Avis en attente</span>
+      </a>
+
       <!-- Séparateur -->
       <mat-divider style="border-color: rgba(255,255,255,0.1); margin: 8px 0;"></mat-divider>
 

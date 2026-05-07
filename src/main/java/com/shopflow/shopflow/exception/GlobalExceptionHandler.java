@@ -7,7 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
-
+// Classe de gestion globale des exceptions pour intercepter et traiter les différentes exceptions qui peuvent survenir dans l'application, en fournissant des réponses d'erreur structurées et informatives aux clients
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
